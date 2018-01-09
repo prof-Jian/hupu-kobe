@@ -1,0 +1,15 @@
+url = 'http://photo.hupu.com/nba/tag/%E7%A7%91%E6%AF%94'
+res = requests.get(url)
+res.encoding = 'gb18030'
+soup = BeautifulSoup(res.text,"html.parser")
+#截取源码“图片列表”部分
+targets = soup.find_all("div",class_="piclist3")
+
+#把新截取出来的片段新做一个soup
+a = str(targets)
+news = BeautifulSoup(a,"lxml")
+#print(news.find_all('dl'))
+#for link in news.find_all('dl'):
+    #print(link)
+links = news.find_all('dl')
+print(links[0])
